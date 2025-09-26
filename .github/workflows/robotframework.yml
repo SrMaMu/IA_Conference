@@ -1,6 +1,8 @@
 name: Automatizaciones Robot Framework
 
 on:
+  push:
+    branches: [ main ]
   schedule:
     - cron: '0 3 * * *' # Ejecuta todos los días a las 03:00 UTC
   workflow_dispatch:
