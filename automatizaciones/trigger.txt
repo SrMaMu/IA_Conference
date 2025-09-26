@@ -1,0 +1,2 @@
+# Trigger file para inicializar el primer run de GitHub Actions
+Este archivo puede ser eliminado luego de verificar la ejecución del workflow.
