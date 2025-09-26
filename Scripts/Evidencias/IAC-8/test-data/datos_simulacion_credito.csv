@@ -1,0 +1,2 @@
+ticket_id,tipo_credito,valor_id,valor_vivienda,monto_prestamo,plazo_meses,metodo_amortizacion,fecha_ejecucion,resultado_esperado
+IAC-8,Hipotecario vivienda,9c3f41c9-446d-461b-a190-6747ff2cc879,80000,50000,120,Frances,2025-09-25,Cuota calculada exitosamente

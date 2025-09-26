@@ -1,0 +1,23 @@
+name: Robot Framework CI
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # Ejecuta todos los días a las 03:00 UTC
+  workflow_dispatch:
+
+jobs:
+  robot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install Robot Framework
+        run: |
+          pip install robotframework selenium robotframework-seleniumlibrary
+      - name: Run Robot tests
+        run: |
+          robot Funcionales/

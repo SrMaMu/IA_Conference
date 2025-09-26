@@ -1,0 +1,9 @@
+# Ignorar archivos temporales, logs y entornos virtuales
+__pycache__/
+*.pyc
+*.pyo
+*.log
+.env
+.venv
+venv/
+

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.5 on win32)" generated="2025-09-25T23:17:59.122813" rpa="false" schemaversion="5">
+<suite id="s1" name="IAC-10" source="C:\Users\matias.munoz\OneDrive - NEORIS\Escritorio\IA_Conference_2025\Scripts\IAC-10.robot">
+<test id="s1-t1" name="IAC-10 - TC001 Navegación inicial y validación de accesibilidad" line="16">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-09-25T23:17:59.751415" level="INFO">Opening browser 'Chrome' to base url 'https://www.argentina.gob.ar/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-09-25T23:17:59.750540" elapsed="6.733038"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-09-25T23:18:06.485753" elapsed="2.134708"/>
+</kw>
+<kw name="Given usuario accede al sitio argentina.gob.ar">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//header</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-25T23:18:08.622263" elapsed="0.053683"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//nav</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-25T23:18:08.676259" elapsed="0.019459"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-09-25T23:18:08.726630" level="INFO">Current page contains text 'Argentina.gob.ar'.</msg>
+<arg>Argentina.gob.ar</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-09-25T23:18:08.696014" elapsed="0.030804"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-09-25T23:18:08.841018" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="IAC-10_TC001_inicio_navegacion.png"&gt;&lt;img src="IAC-10_TC001_inicio_navegacion.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>IAC-10_TC001_inicio_navegacion.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-09-25T23:18:08.727132" elapsed="0.114117"/>
+</kw>
+<doc>Precondición: Navegar al sitio y validar carga inicial</doc>
+<status status="PASS" start="2025-09-25T23:18:08.621623" elapsed="0.219838"/>
+</kw>
+<kw name="When usuario explora las secciones principales">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2025-09-25T23:18:39.094646" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-09-25T23:18:39.094931" level="FAIL">Element 'xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]' not visible after 30 seconds.</msg>
+<arg>xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2025-09-25T23:18:08.844667" elapsed="30.256830">Element 'xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]' not visible after 30 seconds.</status>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-25T23:18:39.101944" elapsed="0.000209"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2025-09-25T23:18:39.102598" elapsed="0.000106"/>
+</kw>
+<kw name="Go Back" owner="SeleniumLibrary">
+<doc>Simulates the user clicking the back button on their browser.</doc>
+<status status="NOT RUN" start="2025-09-25T23:18:39.102970" elapsed="0.000059"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2025-09-25T23:18:39.103176" elapsed="0.000045"/>
+</kw>
+<doc>Acción: Navegar por las secciones principales del sitio</doc>
+<status status="FAIL" start="2025-09-25T23:18:08.843982" elapsed="30.259467">Element 'xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]' not visible after 30 seconds.</status>
+</kw>
+<kw name="Then el sitio debe mostrar contenido accesible">
+<doc>Validación: Verificar elementos de accesibilidad</doc>
+<status status="NOT RUN" start="2025-09-25T23:18:39.104028" elapsed="0.000065"/>
+</kw>
+<kw name="And todos los elementos principales deben estar presentes">
+<doc>Validación: Confirmar presencia de elementos clave</doc>
+<status status="NOT RUN" start="2025-09-25T23:18:39.104611" elapsed="0.000062"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-09-25T23:18:39.105354" elapsed="2.747462"/>
+</kw>
+<doc>Escenario: Validar accesibilidad del sitio web gubernamental
+Given que estoy en la página de inicio de Argentina.gob.ar
+When navego por las secciones principales del sitio
+Then el contenido debe ser accesible y funcional
+And todos los enlaces principales deben funcionar correctamente</doc>
+<tag>accessibility</tag>
+<tag>automated</tag>
+<tag>IAC-10</tag>
+<tag>regression</tag>
+<status status="FAIL" start="2025-09-25T23:17:59.747974" elapsed="42.105244">Element 'xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]' not visible after 30 seconds.</status>
+</test>
+<test id="s1-t2" name="IAC-10 - TC002 Documentación de contenido disponible" line="41">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2025-09-25T23:18:41.856858" level="INFO">Opening browser 'Chrome' to base url 'https://www.argentina.gob.ar/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-09-25T23:18:41.856279" elapsed="6.405821"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2025-09-25T23:18:48.262754" elapsed="1.742828"/>
+</kw>
+<kw name="Given usuario accede al sitio argentina.gob.ar">
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//header</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-25T23:18:50.007495" elapsed="0.065802"/>
+</kw>
+<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
+<arg>xpath=//nav</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-25T23:18:50.073629" elapsed="0.031745"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2025-09-25T23:18:50.130057" level="INFO">Current page contains text 'Argentina.gob.ar'.</msg>
+<arg>Argentina.gob.ar</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2025-09-25T23:18:50.105731" elapsed="0.024525"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2025-09-25T23:18:50.261372" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="IAC-10_TC001_inicio_navegacion.png"&gt;&lt;img src="IAC-10_TC001_inicio_navegacion.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>IAC-10_TC001_inicio_navegacion.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-09-25T23:18:50.130618" elapsed="0.131011"/>
+</kw>
+<doc>Precondición: Navegar al sitio y validar carga inicial</doc>
+<status status="PASS" start="2025-09-25T23:18:50.006559" elapsed="0.255321"/>
+</kw>
+<kw name="When usuario busca información de trámites">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<msg time="2025-09-25T23:19:20.504995" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-09-25T23:19:20.505270" level="FAIL">Element 'xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]' not visible after 30 seconds.</msg>
+<arg>xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]</arg>
+<arg>${TIMEOUT}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="FAIL" start="2025-09-25T23:18:50.265106" elapsed="30.242519">Element 'xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]' not visible after 30 seconds.</status>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<arg>xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-25T23:19:20.508012" elapsed="0.000092"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>3s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2025-09-25T23:19:20.508279" elapsed="0.000036"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<arg>IAC-10_TC002_seccion_tramites.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="NOT RUN" start="2025-09-25T23:19:20.508430" elapsed="0.000030"/>
+</kw>
+<doc>Acción: Buscar información específica sobre trámites</doc>
+<status status="FAIL" start="2025-09-25T23:18:50.264578" elapsed="30.244047">Element 'xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]' not visible after 30 seconds.</status>
+</kw>
+<kw name="Then la documentación debe estar disponible">
+<doc>Validación: Verificar disponibilidad de documentación</doc>
+<status status="NOT RUN" start="2025-09-25T23:19:20.509335" elapsed="0.000089"/>
+</kw>
+<kw name="And los enlaces de trámites deben funcionar">
+<doc>Validación: Confirmar funcionalidad de enlaces</doc>
+<status status="NOT RUN" start="2025-09-25T23:19:20.509975" elapsed="0.000060"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-09-25T23:19:20.510808" elapsed="3.470940"/>
+</kw>
+<doc>Escenario: Verificar que la documentación esté disponible
+Given que estoy en el sitio web
+When busco información sobre trámites
+Then debo encontrar documentación clara y accesible</doc>
+<tag>automated</tag>
+<tag>documentation</tag>
+<tag>IAC-10</tag>
+<tag>regression</tag>
+<status status="FAIL" start="2025-09-25T23:18:41.854975" elapsed="42.127245">Element 'xpath=//nav//a[contains(@href, 'tramites') or contains(text(), 'Trámites')]' not visible after 30 seconds.</status>
+</test>
+<doc>Script automatizado generado para IAC-10 - Pruebas de Accesibilidad Argentina.gob.ar
+Basado en ejecución exploratoria con Playwright
+Fecha: 25 de Septiembre de 2025
+URL: https://www.argentina.gob.ar/</doc>
+<status status="FAIL" start="2025-09-25T23:17:59.126737" elapsed="84.858056"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="2" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">accessibility</stat>
+<stat pass="0" fail="2" skip="0">automated</stat>
+<stat pass="0" fail="1" skip="0">documentation</stat>
+<stat pass="0" fail="2" skip="0">IAC-10</stat>
+<stat pass="0" fail="2" skip="0">regression</stat>
+</tag>
+<suite>
+<stat name="IAC-10" id="s1" pass="0" fail="2" skip="0">IAC-10</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
