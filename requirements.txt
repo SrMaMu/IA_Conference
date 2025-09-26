@@ -1,0 +1,22 @@
+# Dependencias para Robot Framework y Selenium
+# Automatizaciones IA_Conference
+
+# Core Robot Framework
+robotframework>=7.0.0
+
+# Selenium WebDriver
+selenium>=4.15.0
+robotframework-seleniumlibrary>=6.2.0
+
+# Utilities
+webdriver-manager>=4.0.0
+
+# Testing utilities
+robotframework-requests>=0.9.4
+robotframework-pabot>=2.16.0
+
+# Browser automation
+robotframework-browser>=17.5.0
+
+# Reporting
+robotframework-rebot>=7.0.0

@@ -10,16 +10,31 @@ on:
 jobs:
   robot:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
+        
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      - name: Install Robot Framework
+          
+      - name: Install dependencies
         run: |
-          pip install robotframework selenium robotframework-seleniumlibrary
-      - name: Run Robot tests
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          
+      - name: Install Chrome for testing
+        uses: browser-actions/setup-chrome@latest
+        
+      - name: Run Robot Framework tests
         run: |
-          robot automatizaciones/
+          robot --outputdir results automatizaciones/
+          
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: robot-results
+          path: results/
