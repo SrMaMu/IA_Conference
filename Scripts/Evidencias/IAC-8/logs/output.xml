@@ -1,372 +1,706 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.3.2 (Python 3.13.5 on win32)" generated="2025-09-25T23:09:39.605469" rpa="false" schemaversion="5">
-<suite id="s1" name="IAC-8" source="C:\Users\matias.munoz\OneDrive - NEORIS\Escritorio\IA_Conference_2025\Scripts\IAC-8.robot">
-<test id="s1-t1" name="IAC-8 - TC001 Calcular cuota mensual con datos válidos" line="23">
+<robot generator="Robot 7.3.2 (Python 3.13.5 on win32)" generated="2025-09-26T17:57:03.912316" rpa="false" schemaversion="5">
+<suite id="s1" name="IAC-8 Automatizado" source="C:\Users\matias.munoz\OneDrive - NEORIS\Escritorio\IA_Conference_2025\Scripts\IAC-8_Automatizado.robot">
+<kw name="Abrir Navegador Y Navegar Al Simulador" type="SETUP">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:09:40.142901" level="INFO">Opening browser 'Chrome' to base url 'https://www.pichincha.com/detalle-producto/simulador-de-credito'.</msg>
+<msg time="2025-09-26T17:57:05.915232" level="INFO">Opening browser 'Chrome' to base url 'https://www.pichincha.com/detalle-producto/simulador-de-credito'.</msg>
 <arg>${URL}</arg>
 <arg>${BROWSER}</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2025-09-25T23:09:40.142251" elapsed="7.512138"/>
+<status status="PASS" start="2025-09-26T17:57:05.913861" elapsed="13.700597"/>
 </kw>
 <kw name="Maximize Browser Window" owner="SeleniumLibrary">
 <doc>Maximizes current browser window.</doc>
-<status status="PASS" start="2025-09-25T23:09:47.655089" elapsed="0.033916"/>
+<status status="PASS" start="2025-09-26T17:57:19.615384" elapsed="1.376988"/>
 </kw>
-<kw name="Given usuario accede al simulador de credito">
-<kw name="Wait Until Page Contains Element" owner="SeleniumLibrary">
-<arg>id=selcProduct</arg>
+<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
 <arg>${TIMEOUT}</arg>
-<doc>Waits until the element ``locator`` appears on the current page.</doc>
-<status status="PASS" start="2025-09-25T23:09:47.692419" elapsed="10.008994"/>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="PASS" start="2025-09-26T17:57:20.992844" elapsed="0.009137"/>
 </kw>
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>id=selcProduct</arg>
-<arg>${TIMEOUT}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-25T23:09:57.701805" elapsed="0.241839"/>
-</kw>
-<kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:09:57.978564" level="INFO">Current page contains text 'Simulador de Crédito'.</msg>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
 <arg>Simulador de Crédito</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2025-09-25T23:09:57.944021" elapsed="0.034794"/>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-26T17:57:21.002417" elapsed="18.325279"/>
 </kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:09:58.087666" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="IAC-8_TC001_acceso_simulador.png"&gt;&lt;img src="IAC-8_TC001_acceso_simulador.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>IAC-8_TC001_acceso_simulador.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-09-25T23:09:57.979176" elapsed="0.108780"/>
+<doc>Setup inicial del navegador</doc>
+<status status="PASS" start="2025-09-26T17:57:05.909394" elapsed="33.418949"/>
 </kw>
-<doc>Precondición: Navegar al simulador y validar carga</doc>
-<status status="PASS" start="2025-09-25T23:09:47.691337" elapsed="10.396828"/>
+<test id="s1-t1" name="TC001 Simulacion Hipotecaria Metodo Frances" line="37">
+<kw name="Navegar Al Simulador" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:57:39.336543" level="INFO">Opening url 'https://www.pichincha.com/detalle-producto/simulador-de-credito'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-09-26T17:57:39.336116" elapsed="0.374426"/>
 </kw>
-<kw name="When usuario selecciona tipo de credito hipotecario">
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>id=selcProduct</arg>
-<arg>${TIMEOUT}</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-25T23:09:58.094589" elapsed="0.044231"/>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Simulador de Crédito</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-26T17:57:39.712141" elapsed="6.783253"/>
 </kw>
-<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
-<arg>id=selcProduct</arg>
-<arg>${TIMEOUT}</arg>
-<doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-09-25T23:09:58.139217" elapsed="0.119567"/>
+<doc>Navegar a la página del simulador</doc>
+<status status="PASS" start="2025-09-26T17:57:39.335248" elapsed="7.161905"/>
 </kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:09:58.259705" level="INFO">Selecting options from selection list 'id=selcProduct' by value 9c3f41c9-446d-461b-a190-6747ff2cc879.</msg>
-<arg>id=selcProduct</arg>
-<arg>${TIPO_CREDITO}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-09-25T23:09:58.259169" elapsed="0.339673"/>
+<kw name="Seleccionar Tipo De Credito">
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:57:46.508095" level="INFO">Selecting options from selection list 'id=selcProduct' by label Hipotecario vivienda.</msg>
+<arg>${DROPDOWN_CREDITO}</arg>
+<arg>${tipo_credito}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2025-09-26T17:57:46.501037" elapsed="0.780723"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-09-25T23:10:03.600255" level="INFO">Slept 5 seconds.</msg>
-<arg>5s</arg>
+<msg time="2025-09-26T17:57:48.283776" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-09-25T23:09:58.599239" elapsed="5.001222"/>
+<status status="PASS" start="2025-09-26T17:57:47.282408" elapsed="1.001713"/>
 </kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:03.729504" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="IAC-8_TC001_tipo_credito_seleccionado.png"&gt;&lt;img src="IAC-8_TC001_tipo_credito_seleccionado.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>IAC-8_TC001_tipo_credito_seleccionado.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-09-25T23:10:03.600746" elapsed="0.128982"/>
+<arg>Hipotecario vivienda</arg>
+<doc>Seleccionar tipo de crédito del dropdown</doc>
+<status status="PASS" start="2025-09-26T17:57:46.500080" elapsed="1.784327"/>
 </kw>
-<doc>Seleccionar "Hipotecario vivienda" del dropdown principal</doc>
-<status status="PASS" start="2025-09-25T23:09:58.093892" elapsed="5.636075"/>
-</kw>
-<kw name="And usuario ingresa valor de vivienda">
+<kw name="Ingresar Valor De La Vivienda">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//input[@id='inputVivienda']</arg>
-<arg>20s</arg>
+<arg>${INPUT_VALOR_VIVIENDA}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-25T23:10:03.731637" elapsed="0.030974"/>
-</kw>
-<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
-<arg>xpath=//input[@id='inputVivienda']</arg>
-<arg>20s</arg>
-<doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-09-25T23:10:03.762996" elapsed="0.038488"/>
-</kw>
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:03.802288" level="INFO">Clicking element 'xpath=//input[@id='inputVivienda']'.</msg>
-<arg>xpath=//input[@id='inputVivienda']</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-25T23:10:03.801835" elapsed="0.154183"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2025-09-25T23:10:05.957208" level="INFO">Slept 2 seconds.</msg>
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-09-25T23:10:03.956502" elapsed="2.000969"/>
+<status status="PASS" start="2025-09-26T17:57:48.299241" elapsed="0.415238"/>
 </kw>
 <kw name="Clear Element Text" owner="SeleniumLibrary">
-<arg>xpath=//input[@id='inputVivienda']</arg>
+<arg>${INPUT_VALOR_VIVIENDA}</arg>
 <doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-25T23:10:05.957840" elapsed="0.077665"/>
+<status status="PASS" start="2025-09-26T17:57:48.714951" elapsed="0.223300"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:06.036425" level="INFO">Typing text '80000' into text field 'xpath=//input[@id='inputVivienda']'.</msg>
-<arg>xpath=//input[@id='inputVivienda']</arg>
+<msg time="2025-09-26T17:57:48.939746" level="INFO">Typing text '80000' into text field 'xpath=//input[@placeholder='Ej. $1000'][1]'.</msg>
+<arg>${INPUT_VALOR_VIVIENDA}</arg>
 <arg>${valor}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-25T23:10:06.035877" elapsed="0.174006"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2025-09-25T23:10:09.210791" level="INFO">Slept 3 seconds.</msg>
-<arg>3s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-09-25T23:10:06.210163" elapsed="3.000866"/>
-</kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:09.287746" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="IAC-8_TC001_valor_vivienda_ingresado.png"&gt;&lt;img src="IAC-8_TC001_valor_vivienda_ingresado.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>IAC-8_TC001_valor_vivienda_ingresado.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-09-25T23:10:09.211349" elapsed="0.076595"/>
+<status status="PASS" start="2025-09-26T17:57:48.938741" elapsed="0.588362"/>
 </kw>
 <arg>${VALOR_VIVIENDA}</arg>
-<doc>Ingresar valor de la vivienda en el campo correspondiente</doc>
-<status status="PASS" start="2025-09-25T23:10:03.730923" elapsed="5.557237"/>
+<doc>Ingresar valor de la vivienda (solo hipotecarios)</doc>
+<status status="PASS" start="2025-09-26T17:57:48.298336" elapsed="1.229471"/>
 </kw>
-<kw name="And usuario ingresa monto a financiar">
+<kw name="Ingresar Monto A Financiar">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//input[@id='inputdinero']</arg>
-<arg>20s</arg>
+<arg>${INPUT_MONTO_FINANCIAR}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-25T23:10:09.289909" elapsed="0.034823"/>
-</kw>
-<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
-<arg>xpath=//input[@id='inputdinero']</arg>
-<arg>20s</arg>
-<doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-09-25T23:10:09.325142" elapsed="0.037602"/>
-</kw>
-<kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:09.363484" level="INFO">Clicking element 'xpath=//input[@id='inputdinero']'.</msg>
-<arg>xpath=//input[@id='inputdinero']</arg>
-<doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-25T23:10:09.363088" elapsed="0.147076"/>
-</kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2025-09-25T23:10:11.511728" level="INFO">Slept 2 seconds.</msg>
-<arg>2s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-09-25T23:10:09.510587" elapsed="2.001374"/>
+<status status="PASS" start="2025-09-26T17:57:49.532446" elapsed="0.111986"/>
 </kw>
 <kw name="Clear Element Text" owner="SeleniumLibrary">
-<arg>xpath=//input[@id='inputdinero']</arg>
+<arg>${INPUT_MONTO_FINANCIAR}</arg>
 <doc>Clears the value of the text-input-element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-25T23:10:11.512273" elapsed="0.098117"/>
+<status status="PASS" start="2025-09-26T17:57:49.644937" elapsed="0.403771"/>
 </kw>
 <kw name="Input Text" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:11.611262" level="INFO">Typing text '50000' into text field 'xpath=//input[@id='inputdinero']'.</msg>
-<arg>xpath=//input[@id='inputdinero']</arg>
+<msg time="2025-09-26T17:57:50.049800" level="INFO">Typing text '50000' into text field 'xpath=//input[@placeholder='Ej. $1000'][last()]'.</msg>
+<arg>${INPUT_MONTO_FINANCIAR}</arg>
 <arg>${monto}</arg>
 <doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-25T23:10:11.610782" elapsed="0.189899"/>
+<status status="PASS" start="2025-09-26T17:57:50.049134" elapsed="0.658083"/>
 </kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2025-09-25T23:10:14.801731" level="INFO">Slept 3 seconds.</msg>
-<arg>3s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-09-25T23:10:11.801060" elapsed="3.000945"/>
+<arg>${MONTO_FINANCIAR}</arg>
+<doc>Ingresar monto a financiar</doc>
+<status status="PASS" start="2025-09-26T17:57:49.530516" elapsed="1.177035"/>
 </kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:14.893388" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="IAC-8_TC001_monto_financiar_ingresado.png"&gt;&lt;img src="IAC-8_TC001_monto_financiar_ingresado.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>IAC-8_TC001_monto_financiar_ingresado.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-09-25T23:10:14.802390" elapsed="0.091232"/>
-</kw>
-<arg>${MONTO_PRESTAMO}</arg>
-<doc>Ingresar monto que se desea financiar</doc>
-<status status="PASS" start="2025-09-25T23:10:09.289204" elapsed="5.604644"/>
-</kw>
-<kw name="And usuario selecciona plazo de">
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//select[@id='selectplazo']</arg>
-<arg>20s</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-25T23:10:14.895032" elapsed="0.032227"/>
-</kw>
-<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
-<arg>xpath=//select[@id='selectplazo']</arg>
-<arg>20s</arg>
-<doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-09-25T23:10:14.927623" elapsed="0.036973"/>
-</kw>
-<kw name="Select From List By Value" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:14.965191" level="INFO">Selecting options from selection list 'xpath=//select[@id='selectplazo']' by value 120.</msg>
-<arg>xpath=//select[@id='selectplazo']</arg>
+<kw name="Seleccionar Plazo">
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:57:50.715780" level="INFO">Selecting options from selection list 'id=selectplazo' by label 120 meses (10.0 años).</msg>
+<arg>${DROPDOWN_PLAZO}</arg>
 <arg>${plazo}</arg>
-<doc>Selects options from selection list ``locator`` by ``values``.</doc>
-<status status="PASS" start="2025-09-25T23:10:14.964833" elapsed="0.181459"/>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2025-09-26T17:57:50.715072" elapsed="1.057339"/>
 </kw>
-<kw name="Sleep" owner="BuiltIn">
-<msg time="2025-09-25T23:10:18.147231" level="INFO">Slept 3 seconds.</msg>
-<arg>3s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-09-25T23:10:15.146571" elapsed="3.000880"/>
+<arg>${PLAZO_HIPOTECARIO}</arg>
+<doc>Seleccionar plazo del dropdown</doc>
+<status status="PASS" start="2025-09-26T17:57:50.714114" elapsed="1.058636"/>
 </kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:18.246411" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="IAC-8_TC001_plazo_seleccionado.png"&gt;&lt;img src="IAC-8_TC001_plazo_seleccionado.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>IAC-8_TC001_plazo_seleccionado.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-09-25T23:10:18.147785" elapsed="0.098792"/>
-</kw>
-<arg>${PLAZO_MESES}</arg>
-<doc>Seleccionar plazo en meses del dropdown</doc>
-<status status="PASS" start="2025-09-25T23:10:14.894552" elapsed="3.352165"/>
-</kw>
-<kw name="And usuario selecciona metodo de amortizacion">
-<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//div[@title='${metodo}']</arg>
-<arg>20s</arg>
-<doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-25T23:10:18.247878" elapsed="0.030370"/>
-</kw>
+<kw name="Seleccionar Metodo Frances">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:18.279248" level="INFO">Clicking element 'xpath=//div[@title='Frances']'.</msg>
-<arg>xpath=//div[@title='${metodo}']</arg>
+<msg time="2025-09-26T17:57:51.775915" level="INFO">Clicking element 'xpath=//generic[@title='Frances']'.</msg>
+<msg time="2025-09-26T17:57:52.096061" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-09-26T17:57:52.099221" level="FAIL">Element with locator 'xpath=//generic[@title='Frances']' not found.</msg>
+<arg>${METODO_FRANCES}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-25T23:10:18.278652" elapsed="0.109221"/>
+<status status="FAIL" start="2025-09-26T17:57:51.775253" elapsed="1.184204">Element with locator 'xpath=//generic[@title='Frances']' not found.</status>
+</kw>
+<doc>Seleccionar método de amortización francés</doc>
+<status status="FAIL" start="2025-09-26T17:57:51.774451" elapsed="1.188205">Element with locator 'xpath=//generic[@title='Frances']' not found.</status>
+</kw>
+<kw name="Ejecutar Simulacion">
+<doc>Hacer clic en el botón simular y esperar resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:57:52.984469" elapsed="0.000206"/>
+</kw>
+<kw name="Obtener Cuota Mensual">
+<var>${cuota_mensual}</var>
+<doc>Extraer valor de cuota mensual de los resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:57:52.988016" elapsed="0.000316"/>
+</kw>
+<kw name="Obtener Tasa De Interes">
+<var>${tasa_interes}</var>
+<doc>Extraer tasa de interés de los resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:57:52.992439" elapsed="0.000204"/>
+</kw>
+<kw name="Obtener Total A Pagar">
+<var>${total_pagar}</var>
+<doc>Extraer total a pagar de los resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:57:52.997461" elapsed="0.000145"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${cuota_mensual} &gt; 600</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2025-09-26T17:57:52.998381" elapsed="0.000156"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${cuota_mensual} &lt; 800</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2025-09-26T17:57:52.999640" elapsed="0.000199"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${tasa_interes}</arg>
+<arg>10.07%</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" start="2025-09-26T17:57:53.000449" elapsed="0.000101"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${total_pagar} &gt; 80000</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2025-09-26T17:57:53.001326" elapsed="0.000103"/>
+</kw>
+<kw name="Capture Element Screenshot" owner="SeleniumLibrary">
+<arg>${RESULTADO_CUOTA}</arg>
+<arg>TC001_resultado_frances.png</arg>
+<doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
+<status status="NOT RUN" start="2025-09-26T17:57:53.003549" elapsed="0.000454"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Cuota mensual calculada: $${cuota_mensual}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-09-26T17:57:53.005956" elapsed="0.000126"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary" type="TEARDOWN">
+<msg time="2025-09-26T17:57:53.381770" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-09-26T17:57:53.012465" elapsed="0.369572"/>
+</kw>
+<doc>Validar simulación de crédito hipotecario con método francés</doc>
+<tag>critico</tag>
+<tag>frances</tag>
+<tag>hipotecario</tag>
+<status status="FAIL" start="2025-09-26T17:57:39.328630" elapsed="14.107615">Element with locator 'xpath=//generic[@title='Frances']' not found.</status>
+</test>
+<test id="s1-t2" name="TC002 Simulacion Hipotecaria Metodo Aleman" line="61">
+<kw name="Navegar Al Simulador" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:57:53.487807" level="INFO">Opening url 'https://www.pichincha.com/detalle-producto/simulador-de-credito'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-09-26T17:57:53.487317" elapsed="0.133224"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Simulador de Crédito</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-26T17:57:53.621017" elapsed="4.702862"/>
+</kw>
+<doc>Navegar a la página del simulador</doc>
+<status status="PASS" start="2025-09-26T17:57:53.474295" elapsed="4.849873"/>
+</kw>
+<kw name="Seleccionar Tipo De Credito">
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:57:58.330546" level="INFO">Selecting options from selection list 'id=selcProduct' by label Hipotecario vivienda.</msg>
+<arg>${DROPDOWN_CREDITO}</arg>
+<arg>${tipo_credito}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2025-09-26T17:57:58.329729" elapsed="0.725036"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-09-25T23:10:20.388791" level="INFO">Slept 2 seconds.</msg>
-<arg>2s</arg>
+<msg time="2025-09-26T17:58:00.057663" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-09-25T23:10:18.388229" elapsed="2.000814"/>
+<status status="PASS" start="2025-09-26T17:57:59.055558" elapsed="1.002384"/>
 </kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:20.501687" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="IAC-8_TC001_metodo_seleccionado.png"&gt;&lt;img src="IAC-8_TC001_metodo_seleccionado.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>IAC-8_TC001_metodo_seleccionado.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-09-25T23:10:20.389288" elapsed="0.112636"/>
+<arg>Hipotecario vivienda</arg>
+<doc>Seleccionar tipo de crédito del dropdown</doc>
+<status status="PASS" start="2025-09-26T17:57:58.328847" elapsed="1.729371"/>
 </kw>
-<arg>${METODO_AMORTIZACION}</arg>
-<doc>Seleccionar método de amortización (Francés o Alemán)</doc>
-<status status="PASS" start="2025-09-25T23:10:18.247227" elapsed="2.254914"/>
-</kw>
-<kw name="And usuario ejecuta la simulacion">
+<kw name="Ingresar Valor De La Vivienda">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<arg>xpath=//button[@id='BtnSimu']</arg>
-<arg>20s</arg>
+<arg>${INPUT_VALOR_VIVIENDA}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="PASS" start="2025-09-25T23:10:20.503713" elapsed="0.031093"/>
+<status status="PASS" start="2025-09-26T17:58:00.061654" elapsed="0.064922"/>
 </kw>
-<kw name="Wait Until Element Is Enabled" owner="SeleniumLibrary">
-<arg>xpath=//button[@id='BtnSimu']</arg>
-<arg>20s</arg>
-<doc>Waits until the element ``locator`` is enabled.</doc>
-<status status="PASS" start="2025-09-25T23:10:20.535233" elapsed="0.039270"/>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${INPUT_VALOR_VIVIENDA}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-26T17:58:00.127638" elapsed="0.141736"/>
 </kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:00.270504" level="INFO">Typing text '80000' into text field 'xpath=//input[@placeholder='Ej. $1000'][1]'.</msg>
+<arg>${INPUT_VALOR_VIVIENDA}</arg>
+<arg>${valor}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-26T17:58:00.269835" elapsed="0.401853"/>
+</kw>
+<arg>${VALOR_VIVIENDA}</arg>
+<doc>Ingresar valor de la vivienda (solo hipotecarios)</doc>
+<status status="PASS" start="2025-09-26T17:58:00.058925" elapsed="0.615320"/>
+</kw>
+<kw name="Ingresar Monto A Financiar">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${INPUT_MONTO_FINANCIAR}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-26T17:58:00.682818" elapsed="0.091990"/>
+</kw>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${INPUT_MONTO_FINANCIAR}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-26T17:58:00.775396" elapsed="0.295818"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:01.072385" level="INFO">Typing text '50000' into text field 'xpath=//input[@placeholder='Ej. $1000'][last()]'.</msg>
+<arg>${INPUT_MONTO_FINANCIAR}</arg>
+<arg>${monto}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-09-26T17:58:01.071674" elapsed="0.511573"/>
+</kw>
+<arg>${MONTO_FINANCIAR}</arg>
+<doc>Ingresar monto a financiar</doc>
+<status status="PASS" start="2025-09-26T17:58:00.681577" elapsed="0.901965"/>
+</kw>
+<kw name="Seleccionar Plazo">
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:01.588599" level="INFO">Selecting options from selection list 'id=selectplazo' by label 120 meses (10.0 años).</msg>
+<arg>${DROPDOWN_PLAZO}</arg>
+<arg>${plazo}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2025-09-26T17:58:01.587729" elapsed="0.506673"/>
+</kw>
+<arg>${PLAZO_HIPOTECARIO}</arg>
+<doc>Seleccionar plazo del dropdown</doc>
+<status status="PASS" start="2025-09-26T17:58:01.586614" elapsed="0.508969"/>
+</kw>
+<kw name="Seleccionar Metodo Aleman">
 <kw name="Click Element" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:20.575230" level="INFO">Clicking element 'xpath=//button[@id='BtnSimu']'.</msg>
-<arg>xpath=//button[@id='BtnSimu']</arg>
+<msg time="2025-09-26T17:58:02.102558" level="INFO">Clicking element 'xpath=//generic[@title='Aleman']'.</msg>
+<msg time="2025-09-26T17:58:02.300468" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-09-26T17:58:02.306291" level="FAIL">Element with locator 'xpath=//generic[@title='Aleman']' not found.</msg>
+<arg>${METODO_ALEMAN}</arg>
 <doc>Click the element identified by ``locator``.</doc>
-<status status="PASS" start="2025-09-25T23:10:20.574899" elapsed="0.124136"/>
+<status status="FAIL" start="2025-09-26T17:58:02.101561" elapsed="0.210017">Element with locator 'xpath=//generic[@title='Aleman']' not found.</status>
+</kw>
+<doc>Seleccionar método de amortización alemán</doc>
+<status status="FAIL" start="2025-09-26T17:58:02.100376" elapsed="0.218603">Element with locator 'xpath=//generic[@title='Aleman']' not found.</status>
+</kw>
+<kw name="Ejecutar Simulacion">
+<doc>Hacer clic en el botón simular y esperar resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:02.321434" elapsed="0.000165"/>
+</kw>
+<kw name="Obtener Cuota Mensual">
+<var>${cuota_inicial}</var>
+<doc>Extraer valor de cuota mensual de los resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:02.322317" elapsed="0.000113"/>
+</kw>
+<kw name="Obtener Tasa De Interes">
+<var>${tasa_interes}</var>
+<doc>Extraer tasa de interés de los resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:02.324303" elapsed="0.000149"/>
+</kw>
+<kw name="Obtener Total A Pagar">
+<var>${total_pagar}</var>
+<doc>Extraer total a pagar de los resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:02.331111" elapsed="0.000323"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${cuota_inicial} &gt; 800</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:02.332610" elapsed="0.000154"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${cuota_inicial} &lt; 900</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:02.335571" elapsed="0.000159"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${tasa_interes}</arg>
+<arg>10.07%</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:02.336516" elapsed="0.000122"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${total_pagar} &lt; 80000</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:02.337184" elapsed="0.000098"/>
+</kw>
+<kw name="Capture Element Screenshot" owner="SeleniumLibrary">
+<arg>${RESULTADO_CUOTA}</arg>
+<arg>TC002_resultado_aleman.png</arg>
+<doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:02.337873" elapsed="0.000111"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Primera cuota (alemán): $${cuota_inicial}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:02.338624" elapsed="0.000092"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary" type="TEARDOWN">
+<msg time="2025-09-26T17:58:02.486086" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-09-26T17:58:02.340701" elapsed="0.145640"/>
+</kw>
+<doc>Validar simulación de crédito hipotecario con método alemán</doc>
+<tag>aleman</tag>
+<tag>critico</tag>
+<tag>hipotecario</tag>
+<status status="FAIL" start="2025-09-26T17:57:53.457998" elapsed="9.037379">Element with locator 'xpath=//generic[@title='Aleman']' not found.</status>
+</test>
+<test id="s1-t3" name="TC003 Simulacion Credito De Consumo" line="85">
+<kw name="Navegar Al Simulador" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:02.507371" level="INFO">Opening url 'https://www.pichincha.com/detalle-producto/simulador-de-credito'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-09-26T17:58:02.506709" elapsed="0.128503"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Simulador de Crédito</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-26T17:58:02.635772" elapsed="4.192010"/>
+</kw>
+<doc>Navegar a la página del simulador</doc>
+<status status="PASS" start="2025-09-26T17:58:02.505528" elapsed="4.322559"/>
+</kw>
+<kw name="Seleccionar Tipo De Credito">
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:06.831480" level="INFO">Selecting options from selection list 'id=selcProduct' by label Preciso.</msg>
+<arg>${DROPDOWN_CREDITO}</arg>
+<arg>${tipo_credito}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2025-09-26T17:58:06.830889" elapsed="0.530889"/>
 </kw>
 <kw name="Sleep" owner="BuiltIn">
-<msg time="2025-09-25T23:10:25.701272" level="INFO">Slept 5 seconds.</msg>
-<arg>5s</arg>
+<msg time="2025-09-26T17:58:08.365230" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<status status="PASS" start="2025-09-25T23:10:20.699322" elapsed="5.002266"/>
+<status status="PASS" start="2025-09-26T17:58:07.363933" elapsed="1.001510"/>
 </kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:25.813635" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="IAC-8_TC001_simulacion_ejecutada.png"&gt;&lt;img src="IAC-8_TC001_simulacion_ejecutada.png" width="800px"&gt;&lt;/a&gt;</msg>
-<arg>IAC-8_TC001_simulacion_ejecutada.png</arg>
-<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="PASS" start="2025-09-25T23:10:25.702022" elapsed="0.111866"/>
+<arg>Preciso</arg>
+<doc>Seleccionar tipo de crédito del dropdown</doc>
+<status status="PASS" start="2025-09-26T17:58:06.829572" elapsed="1.536143"/>
 </kw>
-<doc>Hacer clic en el botón Simular para calcular</doc>
-<status status="PASS" start="2025-09-25T23:10:20.503024" elapsed="5.311048"/>
-</kw>
-<kw name="Then el sistema debe mostrar cuota mensual calculada">
+<kw name="Ingresar Monto A Financiar">
 <kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
-<msg time="2025-09-25T23:10:55.968537" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
-<msg time="2025-09-25T23:10:55.968976" level="FAIL">Element 'xpath=//*[contains(text(), '$') and contains(text(), ',')]' not visible after 30 seconds.</msg>
-<arg>xpath=//*[contains(text(), '$') and contains(text(), ',')]</arg>
-<arg>30s</arg>
+<msg time="2025-09-26T17:58:18.505166" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-09-26T17:58:18.505489" level="FAIL">Element 'xpath=//input[@placeholder='Ej. $1000'][last()]' not visible after 10 seconds.</msg>
+<arg>${INPUT_MONTO_FINANCIAR}</arg>
 <doc>Waits until the element ``locator`` is visible.</doc>
-<status status="FAIL" start="2025-09-25T23:10:25.815672" elapsed="30.267432">Element 'xpath=//*[contains(text(), '$') and contains(text(), ',')]' not visible after 30 seconds.</status>
+<status status="FAIL" start="2025-09-26T17:58:08.367642" elapsed="10.187031">Element 'xpath=//input[@placeholder='Ej. $1000'][last()]' not visible after 10 seconds.</status>
 </kw>
-<kw name="Page Should Contain" owner="SeleniumLibrary">
-<arg>$</arg>
-<doc>Verifies that current page contains ``text``.</doc>
-<status status="NOT RUN" start="2025-09-25T23:10:56.083513" elapsed="0.000087"/>
+<kw name="Clear Element Text" owner="SeleniumLibrary">
+<arg>${INPUT_MONTO_FINANCIAR}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.555160" elapsed="0.000095"/>
 </kw>
-<kw name="Page Should Not Contain" owner="SeleniumLibrary">
-<arg>$0,00</arg>
-<doc>Verifies the current page does not contain ``text``.</doc>
-<status status="NOT RUN" start="2025-09-25T23:10:56.083790" elapsed="0.000050"/>
+<kw name="Input Text" owner="SeleniumLibrary">
+<arg>${INPUT_MONTO_FINANCIAR}</arg>
+<arg>${monto}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.555524" elapsed="0.000086"/>
 </kw>
-<kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<arg>xpath=//*[contains(text(), 'Capital')]</arg>
-<doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2025-09-25T23:10:56.084004" elapsed="0.000044"/>
+<arg>${MONTO_CONSUMO}</arg>
+<doc>Ingresar monto a financiar</doc>
+<status status="FAIL" start="2025-09-26T17:58:08.366583" elapsed="10.189370">Element 'xpath=//input[@placeholder='Ej. $1000'][last()]' not visible after 10 seconds.</status>
 </kw>
-<kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<arg>xpath=//*[contains(text(), 'Interés')]</arg>
-<doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2025-09-25T23:10:56.084258" elapsed="0.000052"/>
+<kw name="Seleccionar Plazo">
+<arg>${PLAZO_CONSUMO}</arg>
+<doc>Seleccionar plazo del dropdown</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.556546" elapsed="0.000097"/>
 </kw>
-<kw name="Element Should Be Visible" owner="SeleniumLibrary">
-<arg>xpath=//*[contains(text(), 'Seguro')]</arg>
-<doc>Verifies that the element identified by ``locator`` is visible.</doc>
-<status status="NOT RUN" start="2025-09-25T23:10:56.084467" elapsed="0.000047"/>
+<kw name="Seleccionar Metodo Frances">
+<doc>Seleccionar método de amortización francés</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.557140" elapsed="0.000059"/>
 </kw>
-<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
-<arg>IAC-8_TC001_cuota_mensual_mostrada.png</arg>
+<kw name="Ejecutar Simulacion">
+<doc>Hacer clic en el botón simular y esperar resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.557560" elapsed="0.000054"/>
+</kw>
+<kw name="Obtener Cuota Mensual">
+<var>${cuota_mensual}</var>
+<doc>Extraer valor de cuota mensual de los resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.557982" elapsed="0.000058"/>
+</kw>
+<kw name="Obtener Tasa De Interes">
+<var>${tasa_interes}</var>
+<doc>Extraer tasa de interés de los resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.558391" elapsed="0.000052"/>
+</kw>
+<kw name="Obtener Total A Pagar">
+<var>${total_pagar}</var>
+<doc>Extraer total a pagar de los resultados</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.559167" elapsed="0.000203"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${cuota_mensual} &gt; 700</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.561609" elapsed="0.000090"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${cuota_mensual} &lt; 800</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.562038" elapsed="0.000062"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${tasa_interes}</arg>
+<arg>15.6%</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.562557" elapsed="0.000123"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${total_pagar} &gt; 17000</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.563920" elapsed="0.000339"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${total_pagar} &lt; 19000</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.565057" elapsed="0.000150"/>
+</kw>
+<kw name="Capture Element Screenshot" owner="SeleniumLibrary">
+<arg>${RESULTADO_CUOTA}</arg>
+<arg>TC003_resultado_consumo.png</arg>
+<doc>Captures a screenshot from the element identified by ``locator`` and embeds it into log file.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.566432" elapsed="0.000086"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Cuota consumo calculada: $${cuota_mensual}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:18.567065" elapsed="0.000080"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary" type="TEARDOWN">
+<msg time="2025-09-26T17:58:18.692403" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
 <doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
-<status status="NOT RUN" start="2025-09-25T23:10:56.084672" elapsed="0.000044"/>
+<status status="PASS" start="2025-09-26T17:58:18.568136" elapsed="0.124648"/>
 </kw>
-<doc>Validar que se muestre la cuota mensual calculada</doc>
-<status status="FAIL" start="2025-09-25T23:10:25.815184" elapsed="30.269803">Element 'xpath=//*[contains(text(), '$') and contains(text(), ',')]' not visible after 30 seconds.</status>
+<doc>Validar simulación de crédito de consumo tipo Preciso</doc>
+<tag>consumo</tag>
+<tag>medio</tag>
+<tag>preciso</tag>
+<status status="FAIL" start="2025-09-26T17:58:02.502414" elapsed="16.191439">Element 'xpath=//input[@placeholder='Ej. $1000'][last()]' not visible after 10 seconds.</status>
+</test>
+<test id="s1-t4" name="TC004 Validacion Cambio Dinamico De Formulario" line="109">
+<kw name="Navegar Al Simulador" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:18.698087" level="INFO">Opening url 'https://www.pichincha.com/detalle-producto/simulador-de-credito'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-09-26T17:58:18.697788" elapsed="0.091965"/>
 </kw>
-<kw name="And debe mostrar desglose detallado del credito">
-<doc>Validar desglose completo del crédito calculado</doc>
-<status status="NOT RUN" start="2025-09-25T23:10:56.085741" elapsed="0.000096"/>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Simulador de Crédito</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-26T17:58:18.790179" elapsed="3.564878"/>
 </kw>
+<doc>Navegar a la página del simulador</doc>
+<status status="PASS" start="2025-09-26T17:58:18.697214" elapsed="3.658197"/>
+</kw>
+<kw name="Seleccionar Tipo De Credito">
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:22.370406" level="INFO">Selecting options from selection list 'id=selcProduct' by label Hipotecario vivienda.</msg>
+<arg>${DROPDOWN_CREDITO}</arg>
+<arg>${tipo_credito}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2025-09-26T17:58:22.369778" elapsed="0.977616"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-09-26T17:58:24.348795" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-09-26T17:58:23.347941" elapsed="1.001060"/>
+</kw>
+<arg>Hipotecario vivienda</arg>
+<doc>Seleccionar tipo de crédito del dropdown</doc>
+<status status="PASS" start="2025-09-26T17:58:22.368848" elapsed="1.980440"/>
+</kw>
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:24.392110" level="INFO">Element 'xpath=//input[@placeholder='Ej. $1000'][1]' is displayed.</msg>
+<arg>${INPUT_VALOR_VIVIENDA}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2025-09-26T17:58:24.350136" elapsed="0.042270"/>
+</kw>
+<kw name="Seleccionar Tipo De Credito">
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:24.398714" level="INFO">Selecting options from selection list 'id=selcProduct' by label Preciso.</msg>
+<arg>${DROPDOWN_CREDITO}</arg>
+<arg>${tipo_credito}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="PASS" start="2025-09-26T17:58:24.395721" elapsed="0.263438"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-09-26T17:58:25.660912" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-09-26T17:58:24.659689" elapsed="1.001447"/>
+</kw>
+<arg>Preciso</arg>
+<doc>Seleccionar tipo de crédito del dropdown</doc>
+<status status="PASS" start="2025-09-26T17:58:24.394932" elapsed="1.266445"/>
+</kw>
+<kw name="Element Should Not Be Visible" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:25.699745" level="INFO">Element 'xpath=//input[@placeholder='Ej. $1000'][1]' exists but is not displayed.</msg>
+<arg>${INPUT_VALOR_VIVIENDA}</arg>
+<doc>Verifies that the element identified by ``locator`` is NOT visible.</doc>
+<status status="PASS" start="2025-09-26T17:58:25.662783" elapsed="0.037148"/>
+</kw>
+<kw name="Get List Items" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:26.190598" level="INFO">${opciones_consumo} = ['Selecciona tu plazo', '3 meses', '4 meses', '5 meses', '6 meses', '7 meses', '8 meses', '9 meses', '10 meses', '11 meses', '12 meses (1.0 años)', '18 meses (1.5 años)', '24 meses (2.0 años)', '30 me...</msg>
+<var>${opciones_consumo}</var>
+<arg>${DROPDOWN_PLAZO}</arg>
+<doc>Returns all labels or values of selection list ``locator``.</doc>
+<status status="PASS" start="2025-09-26T17:58:25.700496" elapsed="0.490254"/>
+</kw>
+<kw name="Should Not Contain" owner="BuiltIn">
+<arg>${opciones_consumo}</arg>
+<arg>240 meses</arg>
+<doc>Fails if ``container`` contains ``item`` one or more times.</doc>
+<status status="PASS" start="2025-09-26T17:58:26.191396" elapsed="0.000470"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-09-26T17:58:26.193139" level="INFO">Formulario se adapta correctamente según tipo de crédito</msg>
+<arg>Formulario se adapta correctamente según tipo de crédito</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-09-26T17:58:26.192807" elapsed="0.000466"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary" type="TEARDOWN">
+<msg time="2025-09-26T17:58:26.319195" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-7.png"&gt;&lt;img src="selenium-screenshot-7.png" width="800px"&gt;&lt;/a&gt;</msg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-09-26T17:58:26.194214" elapsed="0.125190"/>
+</kw>
+<doc>Verificar que el formulario se adapta según tipo de crédito</doc>
+<tag>dinamico</tag>
+<tag>formulario</tag>
+<tag>funcional</tag>
+<status status="PASS" start="2025-09-26T17:58:18.695714" elapsed="7.624506"/>
+</test>
+<test id="s1-t5" name="TC005 Validacion Montos Minimos" line="127">
+<kw name="Navegar Al Simulador" type="SETUP">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:26.324362" level="INFO">Opening url 'https://www.pichincha.com/detalle-producto/simulador-de-credito'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-09-26T17:58:26.323840" elapsed="0.294359"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Simulador de Crédito</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2025-09-26T17:58:26.618563" elapsed="4.421081"/>
+</kw>
+<doc>Navegar a la página del simulador</doc>
+<status status="PASS" start="2025-09-26T17:58:26.322961" elapsed="4.717093"/>
+</kw>
+<kw name="Seleccionar Tipo De Credito">
+<kw name="Select From List By Label" owner="SeleniumLibrary">
+<msg time="2025-09-26T17:58:31.044146" level="INFO">Selecting options from selection list 'id=selcProduct' by label Hipotecario vivienda.</msg>
+<msg time="2025-09-26T17:58:31.328040" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-8.png"&gt;&lt;img src="selenium-screenshot-8.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg time="2025-09-26T17:58:31.328668" level="FAIL">NoSuchElementException: Message: Could not locate element with visible text: Hipotecario vivienda; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+</msg>
+<arg>${DROPDOWN_CREDITO}</arg>
+<arg>${tipo_credito}</arg>
+<doc>Selects options from selection list ``locator`` by ``labels``.</doc>
+<status status="FAIL" start="2025-09-26T17:58:31.043035" elapsed="0.423543">NoSuchElementException: Message: Could not locate element with visible text: Hipotecario vivienda; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+</status>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:31.467223" elapsed="0.000129"/>
+</kw>
+<arg>Hipotecario vivienda</arg>
+<doc>Seleccionar tipo de crédito del dropdown</doc>
+<status status="FAIL" start="2025-09-26T17:58:31.041179" elapsed="0.426514">NoSuchElementException: Message: Could not locate element with visible text: Hipotecario vivienda; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+</status>
+</kw>
+<kw name="Ingresar Valor De La Vivienda">
+<arg>10000</arg>
+<doc>Ingresar valor de la vivienda (solo hipotecarios)</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:31.471295" elapsed="0.000459"/>
+</kw>
+<kw name="Ingresar Monto A Financiar">
+<arg>2999</arg>
+<doc>Ingresar monto a financiar</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:31.473493" elapsed="0.000135"/>
+</kw>
+<kw name="Element Should Be Disabled" owner="SeleniumLibrary">
+<arg>${BOTON_SIMULAR}</arg>
+<doc>Verifies that element identified by ``locator`` is disabled.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:31.474581" elapsed="0.000124"/>
+</kw>
+<kw name="Seleccionar Tipo De Credito">
+<arg>Preciso</arg>
+<doc>Seleccionar tipo de crédito del dropdown</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:31.477817" elapsed="0.000366"/>
+</kw>
+<kw name="Ingresar Monto A Financiar">
+<arg>299</arg>
+<doc>Ingresar monto a financiar</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:31.485669" elapsed="0.000369"/>
+</kw>
+<kw name="Element Should Be Disabled" owner="SeleniumLibrary">
+<arg>${BOTON_SIMULAR}</arg>
+<doc>Verifies that element identified by ``locator`` is disabled.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:31.487331" elapsed="0.000161"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Validaciones de montos mínimos funcionan correctamente</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2025-09-26T17:58:31.490134" elapsed="0.000120"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary" type="TEARDOWN">
+<msg time="2025-09-26T17:58:31.637130" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-9.png"&gt;&lt;img src="selenium-screenshot-9.png" width="800px"&gt;&lt;/a&gt;</msg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2025-09-26T17:58:31.494077" elapsed="0.143342"/>
+</kw>
+<doc>Verificar validaciones de montos mínimos</doc>
+<tag>funcional</tag>
+<tag>montos</tag>
+<tag>validacion</tag>
+<status status="FAIL" start="2025-09-26T17:58:26.321587" elapsed="5.319291">NoSuchElementException: Message: Could not locate element with visible text: Hipotecario vivienda; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+</status>
+</test>
 <kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2025-09-25T23:10:56.086464" elapsed="3.868585"/>
+<status status="PASS" start="2025-09-26T17:58:31.649716" elapsed="7.304818"/>
 </kw>
-<doc>Escenario: Calcular cuota mensual con datos válidos
-Given que estoy en el simulador de crédito
-When selecciono crédito hipotecario vivienda
-And ingreso valor de vivienda "$80,000"
-And ingreso monto a financiar "$50,000"
-And selecciono plazo de "120 meses"
-And selecciono método de amortización "Francés"
-And presiono el botón simular
-Then el sistema debe mostrar la cuota mensual calculada
-And debe mostrar el desglose detallado del crédito</doc>
-<tag>automated</tag>
-<tag>calculator</tag>
-<tag>IAC-8</tag>
-<tag>regression</tag>
-<status status="FAIL" start="2025-09-25T23:09:40.139212" elapsed="79.816397">Element 'xpath=//*[contains(text(), '$') and contains(text(), ',')]' not visible after 30 seconds.</status>
-</test>
-<doc>Script automatizado generado para IAC-8 - Simulador de Crédito Banco Pichincha
-Basado en ejecución exploratoria con Playwright
-Fecha: 25 de Septiembre de 2025
+<doc>Test Suite para Simulador de Crédito Banco Pichincha
+Automatización de pruebas para validar funcionalidad del simulador
 URL: https://www.pichincha.com/detalle-producto/simulador-de-credito</doc>
-<status status="FAIL" start="2025-09-25T23:09:39.609097" elapsed="80.349978"/>
+<status status="FAIL" start="2025-09-26T17:57:03.919215" elapsed="95.035595"/>
 </suite>
 <statistics>
 <total>
-<stat pass="0" fail="1" skip="0">All Tests</stat>
+<stat pass="1" fail="4" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="0" fail="1" skip="0">automated</stat>
-<stat pass="0" fail="1" skip="0">calculator</stat>
-<stat pass="0" fail="1" skip="0">IAC-8</stat>
-<stat pass="0" fail="1" skip="0">regression</stat>
+<stat pass="0" fail="1" skip="0">aleman</stat>
+<stat pass="0" fail="1" skip="0">consumo</stat>
+<stat pass="0" fail="2" skip="0">critico</stat>
+<stat pass="1" fail="0" skip="0">dinamico</stat>
+<stat pass="1" fail="0" skip="0">formulario</stat>
+<stat pass="0" fail="1" skip="0">frances</stat>
+<stat pass="1" fail="1" skip="0">funcional</stat>
+<stat pass="0" fail="2" skip="0">hipotecario</stat>
+<stat pass="0" fail="1" skip="0">medio</stat>
+<stat pass="0" fail="1" skip="0">montos</stat>
+<stat pass="0" fail="1" skip="0">preciso</stat>
+<stat pass="0" fail="1" skip="0">validacion</stat>
 </tag>
 <suite>
-<stat name="IAC-8" id="s1" pass="0" fail="1" skip="0">IAC-8</stat>
+<stat name="IAC-8 Automatizado" id="s1" pass="1" fail="4" skip="0">IAC-8 Automatizado</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2025-09-26T17:57:03.877175" level="WARN">Error in file 'C:\Users\matias.munoz\OneDrive - NEORIS\Escritorio\IA_Conference_2025\Scripts\IAC-8_Automatizado.robot' on line 202: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-09-26T17:57:03.878159" level="WARN">Error in file 'C:\Users\matias.munoz\OneDrive - NEORIS\Escritorio\IA_Conference_2025\Scripts\IAC-8_Automatizado.robot' on line 208: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-09-26T17:57:03.881637" level="WARN">Error in file 'C:\Users\matias.munoz\OneDrive - NEORIS\Escritorio\IA_Conference_2025\Scripts\IAC-8_Automatizado.robot' on line 215: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2025-09-26T17:57:03.884760" level="WARN">Error in file 'C:\Users\matias.munoz\OneDrive - NEORIS\Escritorio\IA_Conference_2025\Scripts\IAC-8_Automatizado.robot' on line 225: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
 </errors>
 </robot>
