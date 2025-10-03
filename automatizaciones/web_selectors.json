@@ -1,0 +1,11 @@
+{
+  "login": {
+    "tipo_documento_button": "e46",
+    "numero_documento_textbox": "e61",
+    "usuario_textbox": "e68",
+    "clave_digital_textbox": "e77",
+    "ingresar_button": "e121",
+    "error_alert": "e124",
+    "error_message": ["e128", "e130"]
+  }
+}
