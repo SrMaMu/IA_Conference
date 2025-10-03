@@ -1,0 +1,34 @@
+name: BBVA-40 E2E Evidence & Automation
+
+on:
+  push:
+    paths:
+      - 'Scripts/Evidencias/BBVA-40/**'
+      - 'automatizaciones/BBVA-40_web_incompleto.robot'
+      - 'automatizaciones/web_selectors.json'
+      - '.github/workflows/bbva40_e2e.yml'
+
+jobs:
+  evidence-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: List evidence files
+        run: |
+          echo "Evidencias BBVA-40:"
+          ls Scripts/Evidencias/BBVA-40/
+      - name: Show executive report
+        run: |
+          cat Scripts/Evidencias/BBVA-40/EXECUTIVE_REPORT_BBVA-40.md
+      - name: Show web selectors
+        run: |
+          cat automatizaciones/web_selectors.json
+      - name: Show web automation script
+        run: |
+          cat automatizaciones/BBVA-40_web_incompleto.robot
+      - name: Archive evidence
+        uses: actions/upload-artifact@v3
+        with:
+          name: bbva40-evidence
+          path: Scripts/Evidencias/BBVA-40/
