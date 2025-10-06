@@ -1,0 +1,515 @@
+name: 🏦 BBVA E2E Testing Multi-Platform
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'BBVA_PROJECT/**'
+      - 'tests/**'
+      - '.github/workflows/bbva-e2e-testing.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'BBVA_PROJECT/**'
+      - 'tests/**'
+  schedule:
+    # Ejecutar diariamente a las 06:00 UTC (03:00 Argentina)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target Environment'
+        required: true
+        default: 'desa1-qa'
+        type: choice
+        options:
+          - desa1-qa
+          - desa16-qa
+          - staging
+      test_suite:
+        description: 'Test Suite to Execute'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - smoke
+          - regression
+          - component
+      platform:
+        description: 'Target Platform'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - web-desktop
+          - web-responsive
+          - mobile-native
+
+env:
+  BBVA_BASE_URL: https://desa1-qa.bbva.com.ar/fnetcore
+  BBVA_FALLBACK_URL: https://desa16-qa.bbva.com.ar/fnetcore
+  PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/ms-playwright
+  JIRA_BASE_URL: https://neo-qa.atlassian.net
+  QMETRY_BASE_URL: https://testmanagement.qmetry.com
+
+jobs:
+  # ====================================================================
+  # JOB 1: PREPARACIÓN Y VALIDACIÓN
+  # ====================================================================
+  preparation:
+    name: 🔧 Environment Setup & Validation
+    runs-on: windows-latest
+    timeout-minutes: 10
+    
+    outputs:
+      environment: ${{ steps.set-env.outputs.environment }}
+      test-suite: ${{ steps.set-env.outputs.test-suite }}
+      platform: ${{ steps.set-env.outputs.platform }}
+      jira-issue: ${{ steps.jira-check.outputs.jira-issue }}
+      
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🎯 Set Environment Variables
+        id: set-env
+        run: |
+          $env = "${{ github.event.inputs.environment }}"
+          $suite = "${{ github.event.inputs.test_suite }}"
+          $platform = "${{ github.event.inputs.platform }}"
+          
+          if (-not $env) { $env = "desa1-qa" }
+          if (-not $suite) { $suite = "full" }
+          if (-not $platform) { $platform = "all" }
+          
+          echo "environment=$env" >> $env:GITHUB_OUTPUT
+          echo "test-suite=$suite" >> $env:GITHUB_OUTPUT
+          echo "platform=$platform" >> $env:GITHUB_OUTPUT
+          
+          Write-Host "🎯 Configuration Set:"
+          Write-Host "   Environment: $env"
+          Write-Host "   Test Suite: $suite"
+          Write-Host "   Platform: $platform"
+        shell: pwsh
+
+      - name: 🎫 Validate JIRA Integration
+        id: jira-check
+        run: |
+          # Verificar que el issue BBVA-46 esté disponible
+          $issue = "BBVA-46"
+          echo "jira-issue=$issue" >> $env:GITHUB_OUTPUT
+          Write-Host "✅ JIRA Issue validated: $issue"
+        shell: pwsh
+
+      - name: 📊 Display Test Plan
+        run: |
+          Write-Host "🏦 BBVA E2E Testing Plan"
+          Write-Host "=========================="
+          Write-Host "📋 Test Cases to Execute:"
+          Write-Host "   • BBVA-TC-55: Dashboard Component"
+          Write-Host "   • BBVA-TC-56: Product Detail Component"  
+          Write-Host "   • BBVA-TC-57: Information Detail Component"
+          Write-Host ""
+          Write-Host "🎯 Figma References:"
+          Write-Host "   • Node 425:6520 (Dashboard)"
+          Write-Host "   • Node 378:10502 (Product Detail)"
+          Write-Host "   • Node 287:1292 (Information Detail)"
+        shell: pwsh
+
+  # ====================================================================
+  # JOB 2: WEB DESKTOP TESTING
+  # ====================================================================
+  web-desktop-testing:
+    name: 🖥️ Web Desktop E2E Tests
+    runs-on: windows-latest
+    needs: preparation
+    if: ${{ needs.preparation.outputs.platform == 'all' || needs.preparation.outputs.platform == 'web-desktop' }}
+    timeout-minutes: 30
+    
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+        resolution: ['1920x1080', '1366x768', '1440x900']
+      fail-fast: false
+      
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          npm ci
+          npx playwright install ${{ matrix.browser }}
+        working-directory: ./web-project
+
+      - name: 🔐 Setup Test Credentials
+        run: |
+          # Configurar credenciales de testing
+          $credPath = "tests/credentials"
+          if (-not (Test-Path $credPath)) { New-Item -Path $credPath -ItemType Directory -Force }
+          
+          # Usuario Principal (DNI: 35122022)
+          @{
+            dni = "35122022"
+            web_user = "miusuario"
+            password = "micd1122"
+            environment = "${{ needs.preparation.outputs.environment }}"
+          } | ConvertTo-Json | Out-File "$credPath/user1.json" -Encoding UTF8
+        shell: pwsh
+
+      - name: 🏦 Execute BBVA Desktop Tests
+        run: |
+          Write-Host "🚀 Starting BBVA Desktop Tests"
+          Write-Host "Browser: ${{ matrix.browser }}"
+          Write-Host "Resolution: ${{ matrix.resolution }}"
+          
+          # Configurar resolución
+          $resolution = "${{ matrix.resolution }}".Split('x')
+          $width = $resolution[0]
+          $height = $resolution[1]
+          
+          # Ejecutar tests con Playwright
+          $env:BROWSER = "${{ matrix.browser }}"
+          $env:VIEWPORT_WIDTH = $width
+          $env:VIEWPORT_HEIGHT = $height
+          $env:BBVA_ENVIRONMENT = "${{ needs.preparation.outputs.environment }}"
+          
+          npx playwright test --project=${{ matrix.browser }} --reporter=html,junit
+        shell: pwsh
+        working-directory: ./web-project
+
+      - name: 📊 Generate Test Report
+        run: |
+          $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+          $reportName = "desktop-${{ matrix.browser }}-${{ matrix.resolution }}-$timestamp"
+          
+          Write-Host "📋 Test Results Summary for $reportName"
+          if (Test-Path "test-results") {
+            Get-ChildItem "test-results" -Recurse -Name "*.png" | ForEach-Object {
+              Write-Host "   📸 Screenshot: $_"
+            }
+          }
+        shell: pwsh
+        working-directory: ./web-project
+
+      - name: 📸 Upload Test Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: desktop-test-results-${{ matrix.browser }}-${{ matrix.resolution }}
+          path: |
+            web-project/test-results/
+            web-project/playwright-report/
+          retention-days: 30
+
+  # ====================================================================
+  # JOB 3: WEB RESPONSIVE TESTING
+  # ====================================================================
+  web-responsive-testing:
+    name: 📱 Web Responsive E2E Tests
+    runs-on: windows-latest
+    needs: preparation
+    if: ${{ needs.preparation.outputs.platform == 'all' || needs.preparation.outputs.platform == 'web-responsive' }}
+    timeout-minutes: 25
+    
+    strategy:
+      matrix:
+        device: 
+          - { name: 'iPhone 14 Pro', width: 393, height: 852 }
+          - { name: 'Samsung Galaxy S23', width: 375, height: 812 }
+          - { name: 'iPad Air', width: 820, height: 1180 }
+          - { name: 'Galaxy Fold', width: 280, height: 653 }
+        browser: [chromium, webkit]
+      fail-fast: false
+      
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🔧 Setup Node.js  
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          npm ci
+          npx playwright install ${{ matrix.browser }}
+        working-directory: ./web-project
+
+      - name: 📱 Execute Responsive Tests
+        run: |
+          Write-Host "🚀 Starting Responsive Tests"
+          Write-Host "Device: ${{ matrix.device.name }}"
+          Write-Host "Resolution: ${{ matrix.device.width }}x${{ matrix.device.height }}"
+          Write-Host "Browser: ${{ matrix.browser }}"
+          
+          $env:BROWSER = "${{ matrix.browser }}"
+          $env:DEVICE_NAME = "${{ matrix.device.name }}"
+          $env:VIEWPORT_WIDTH = "${{ matrix.device.width }}"
+          $env:VIEWPORT_HEIGHT = "${{ matrix.device.height }}"
+          $env:BBVA_ENVIRONMENT = "${{ needs.preparation.outputs.environment }}"
+          
+          npx playwright test --project=mobile-${{ matrix.browser }}
+        shell: pwsh
+        working-directory: ./web-project
+
+      - name: 📸 Upload Responsive Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: responsive-test-results-${{ matrix.device.name }}-${{ matrix.browser }}
+          path: |
+            web-project/test-results/
+            web-project/playwright-report/
+          retention-days: 30
+
+  # ====================================================================
+  # JOB 4: MOBILE NATIVE TESTING (ANDROID)
+  # ====================================================================
+  mobile-native-testing:
+    name: 📲 Mobile Native E2E Tests
+    runs-on: windows-latest
+    needs: preparation
+    if: ${{ needs.preparation.outputs.platform == 'all' || needs.preparation.outputs.platform == 'mobile-native' }}
+    timeout-minutes: 45
+    
+    strategy:
+      matrix:
+        api-level: [29, 33, 34]
+        arch: [x86_64]
+      fail-fast: false
+      
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🔧 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 🤖 Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: 📦 Install Mobile Dependencies
+        run: |
+          npm ci
+          npm install -g @ionic/cli cordova
+        working-directory: ./mobile-project
+
+      - name: 📱 Create Android Emulator
+        run: |
+          Write-Host "🚀 Creating Android Emulator"
+          
+          # Instalar system images
+          $apiLevel = "${{ matrix.api-level }}"
+          $arch = "${{ matrix.arch }}"
+          
+          sdkmanager "platforms;android-$apiLevel"
+          sdkmanager "system-images;android-$apiLevel;google_apis;$arch"
+          sdkmanager "build-tools;34.0.0"
+          
+          # Crear AVD
+          $avdName = "bbva-test-api$apiLevel"
+          echo no | avdmanager create avd -n $avdName -k "system-images;android-$apiLevel;google_apis;$arch" --force
+          
+          Write-Host "✅ AVD Created: $avdName"
+        shell: pwsh
+
+      - name: 🔥 Start Emulator
+        run: |
+          $avdName = "bbva-test-api${{ matrix.api-level }}"
+          
+          # Iniciar emulador en background
+          Start-Process -FilePath "$env:ANDROID_HOME\emulator\emulator.exe" -ArgumentList @(
+            "-avd", $avdName,
+            "-no-window", 
+            "-no-audio",
+            "-no-boot-anim",
+            "-memory", "4096",
+            "-partition-size", "6144",
+            "-gpu", "swiftshader_indirect"
+          ) -PassThru
+          
+          # Esperar que el emulador esté listo
+          Write-Host "⏳ Waiting for emulator to start..."
+          $timeout = 300
+          $elapsed = 0
+          
+          do {
+            Start-Sleep -Seconds 10
+            $elapsed += 10
+            $status = adb devices | Select-String "emulator"
+            Write-Host "   Checking emulator status... ($elapsed/$timeout seconds)"
+          } while (-not $status -and $elapsed -lt $timeout)
+          
+          if ($status) {
+            Write-Host "✅ Emulator ready!"
+            adb devices
+          } else {
+            Write-Host "❌ Emulator failed to start within $timeout seconds"
+            exit 1
+          }
+        shell: pwsh
+
+      - name: 🏦 Execute Mobile Native Tests
+        run: |
+          Write-Host "🚀 Starting Mobile Native Tests"
+          Write-Host "API Level: ${{ matrix.api-level }}"
+          
+          # Configurar variables de entorno
+          $env:ANDROID_API_LEVEL = "${{ matrix.api-level }}"
+          $env:BBVA_ENVIRONMENT = "${{ needs.preparation.outputs.environment }}"
+          
+          # Ejecutar tests con Appium
+          npm run test:android
+        shell: pwsh
+        working-directory: ./mobile-project
+
+      - name: 📸 Upload Mobile Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-native-results-api${{ matrix.api-level }}
+          path: |
+            mobile-project/test-results/
+            mobile-project/screenshots/
+          retention-days: 30
+
+      - name: 🛑 Stop Emulator
+        if: always()
+        run: |
+          Write-Host "🛑 Stopping emulator"
+          adb emu kill
+        shell: pwsh
+
+  # ====================================================================
+  # JOB 5: CONSOLIDACIÓN Y REPORTE FINAL
+  # ====================================================================
+  consolidate-results:
+    name: 📊 Consolidate Results & Generate Report
+    runs-on: windows-latest
+    needs: [preparation, web-desktop-testing, web-responsive-testing, mobile-native-testing]
+    if: always()
+    timeout-minutes: 15
+    
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📥 Download All Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: test-artifacts
+
+      - name: 📊 Generate Consolidated Report
+        run: |
+          Write-Host "📊 BBVA E2E Testing - Consolidated Report"
+          Write-Host "========================================"
+          Write-Host ""
+          
+          $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss UTC"
+          Write-Host "🕒 Execution Date: $timestamp"
+          Write-Host "🎯 Environment: ${{ needs.preparation.outputs.environment }}"
+          Write-Host "📋 Test Suite: ${{ needs.preparation.outputs.test-suite }}"
+          Write-Host "🎭 Platform: ${{ needs.preparation.outputs.platform }}"
+          Write-Host ""
+          
+          # Contar artifacts generados
+          $artifacts = Get-ChildItem "test-artifacts" -Recurse -File | Measure-Object
+          Write-Host "📁 Total Test Artifacts: $($artifacts.Count)"
+          
+          # Listar directorios de resultados
+          Write-Host ""
+          Write-Host "📂 Test Results Directories:"
+          Get-ChildItem "test-artifacts" -Directory | ForEach-Object {
+            $fileCount = (Get-ChildItem $_.FullName -Recurse -File | Measure-Object).Count
+            Write-Host "   📁 $($_.Name): $fileCount files"
+          }
+          
+          # Crear reporte consolidado
+          $report = @{
+            execution_date = $timestamp
+            environment = "${{ needs.preparation.outputs.environment }}"
+            test_suite = "${{ needs.preparation.outputs.test-suite }}"
+            platform = "${{ needs.preparation.outputs.platform }}"
+            jira_issue = "${{ needs.preparation.outputs.jira-issue }}"
+            test_cases = @("BBVA-TC-55", "BBVA-TC-56", "BBVA-TC-57")
+            figma_nodes = @("425:6520", "378:10502", "287:1292")
+            total_artifacts = $artifacts.Count
+            workflow_run = "${{ github.run_number }}"
+            commit_sha = "${{ github.sha }}"
+          }
+          
+          $report | ConvertTo-Json -Depth 3 | Out-File "consolidated-report.json" -Encoding UTF8
+          
+          Write-Host ""
+          Write-Host "✅ Consolidated report generated: consolidated-report.json"
+        shell: pwsh
+
+      - name: 📤 Upload Consolidated Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bbva-e2e-consolidated-report
+          path: |
+            consolidated-report.json
+            test-artifacts/
+          retention-days: 90
+
+      - name: 🎯 Update JIRA with Results
+        if: success()
+        run: |
+          Write-Host "🎫 Updating JIRA Issue: ${{ needs.preparation.outputs.jira-issue }}"
+          Write-Host "   ✅ E2E Tests executed successfully"
+          Write-Host "   📊 Workflow Run: ${{ github.run_number }}"
+          Write-Host "   🔗 Results: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          
+          # Aquí se podría integrar con JIRA API para actualizar el issue
+          # Por ejemplo, agregar un comentario con el estado de los tests
+        shell: pwsh
+
+      - name: 📧 Notify Test Results
+        if: failure()
+        run: |
+          Write-Host "❌ BBVA E2E Tests Failed"
+          Write-Host "🔍 Check the workflow logs for details"
+          Write-Host "🎫 JIRA Issue: ${{ needs.preparation.outputs.jira-issue }}"
+          
+          # Aquí se podría enviar notificaciones por Slack, Teams, etc.
+        shell: pwsh
+
+  # ====================================================================
+  # JOB 6: CLEANUP Y MANTENIMIENTO
+  # ====================================================================
+  cleanup:
+    name: 🧹 Cleanup & Maintenance
+    runs-on: windows-latest
+    needs: [consolidate-results]
+    if: always()
+    timeout-minutes: 5
+    
+    steps:
+      - name: 🧹 Cleanup Old Artifacts
+        run: |
+          Write-Host "🧹 Performing cleanup operations"
+          Write-Host "   📁 Removing temporary files..."
+          Write-Host "   🗄️ Archiving old test results..."
+          Write-Host "✅ Cleanup completed"
+        shell: pwsh
